@@ -1,0 +1,36 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  security-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker CLI
+        run: |
+          docker version
+          docker info
+
+      - name: Build Docker Image
+        run: |
+          docker build -t myapp:latest .
+
+      - name: Run Trivy Scan
+        run: |
+          docker run --rm \
+            aquasec/trivy image myapp:latest
+
+      - name: Run Semgrep SAST
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/src \
+            returntocorp/semgrep semgrep scan
