@@ -1,55 +1,13 @@
 # Security By Design - Zadanie 4
 
-## Wymagania
-1. Zainstalowana komenda `git` na stacji roboczej
-2. Zainstalowany `docker` na stacji roboczej
-3. Bezpośredni dostęp do internetu (nie przez proxy)
-
-## Przygotowanie
-1. **Założenie konta na GitHub** (jeśli jeszcze nie jesteś zarejestrowany)  
-   Aby wykonać ćwiczenie, konieczne jest posiadanie zarejestrowanego użytkownika na portalu github.com.
-
-2. **Wykonanie "fork'a" projektu**  
-   Wykonaj "fork'a" projektu [https://github.com/Mixeway-Academy/task4](https://github.com/Mixeway-Academy/task4) - w wyniku tej operacji, w twojej przestrzeni na GitHubie powstanie kopia repozytorium.  
-   Zadanie zakłada wykonanie listy operacji na kodzie źródłowym, ale aby nie wprowadzać zmian w przestrzeni, z której korzystają inni użytkownicy, wygodnie jest wykonać kopię w swojej przestrzeni. Więcej informacji znajdziesz [tutaj](https://docs.github.com/en/get-started/quickstart/fork-a-repo).  
-   ![img.png](.github/img.png)
-
-3. **Pobranie kopii projektu na swoją stację roboczą**
-   Aby pobrać 'sforkowany' projekt na swoją stację roboczą, wykonaj poniższą komendę:
-
-```shell
-git clone https://github.com/{username}/task4
-cd task4
-#gdzie {username} to nazwa użytkownika. Wchodząc w swoją kopie repozytoroium przez przeglądarkę można też skorzystać z adresu URL.
-```
-
-Zadania 1 i 2 są opcjonalne. Polegają one na lokalnym uruchomieniu narzędzi trivy i semgrep - istotne jest urchomienie tych testów w procesie CICD - uruchomienie ich lokalnie jednak może przyspieszyć proces konfiguracji procesu CICD i lepiej zrozumiec cel zadania.
-
 ## 1 Zadanie (opcjonalne): Trivy na lokalnie zbudowanym obrazie Dockera
 
 **Cel:**
 * Przeprowadzenie testu skanującego obraz kontenerowy przy użyciu Trivy
 * Zweryfikowanie podstawowych raportów bezpieczeństwa uzyskiwanych z Trivy
 
-### Instrukcje do realizacji:
-1. Zbuduj obraz docker z wykorzystaniem `docker build -t myapp:latest .`, Upewnij się, że obraz został utworzony (np. poleceniem docker images)
-2. Zainstaluj Trivy lub uruchom trivy z wykorzystaniem docker'a
-* [Windows] Zainstaluj Trivy (np. przez Chocolatey lub pobierz binarkę z repozytorium GitHub).
-* [MacOS] `brew install aquasecurity/trivy/trivy`
-```shell
-trivy image myapp:latest
-```
-W przypadku docker'a:
-```shell
-docker run --rm \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    aquasec/trivy image myapp:latest
-```
-3. Sprawdź listę potencjalnych podatności oraz poziomy ryzyka, jakie zwraca Trivy.
-
-### Oczekiwany wynik
-**Opcjonalne**: Uzyskanie raportu o podatnościach z obrazu Dockera i potwierdzenie, że test działa poprawnie
-
+### Wynik
+Raport o podatnościach z obrazu Dockera i potwierdzenie, że test działa poprawnie znajduje się w pliku [results.json](results.json).
 
 ## 2 Zadanie (opcjonalne): SAST z wykorzystaniem Semgrep
 
@@ -57,112 +15,31 @@ docker run --rm \
 * Zapoznanie się z narzędziem Semgrep do statycznej analizy kodu (SAST)
 * Weryfikacja, w jaki sposób Semgrep może wykrywać potencjalne błędy i podatności w kodzie źródłowym
 
-
-### Instrukcje do realizacji
-1. Uruchom Semgrep lokalnie w Dockerze:
-```shell
-docker run --rm \
-    -v "$(pwd)":/src \
-    returntocorp/semgrep semgrep scan
-```
-2. Semgrep zwróci potencjalne miejsca w kodzie, gdzie mogą występować błędy lub podatności (np. użycie funkcji niebezpiecznych, brak sanitacji danych itp.).
-
-
-### Oczekiwany wynik
-**Opcjonalne**: Uzyskanie raportu SAST z wykorzystaniem Semgrep i potwierdzenie, że reguły działają prawidłowo.
-
+### Wynik
+Raport SAST z wykorzystaniem Semgrep i potwierdzenie, że reguły działają prawidłowo znajduje się w pliku [semgrep_results.json](semgrep_results.json).
 
 ## 3 Zadanie (obowiązkowe): Przygotowanie procesu CI/CD z wykorzystaniem Trivy i Semgrep
 
 **Cel:**
 * Zbudowanie kompletnego procesu CI/CD w GitHub Actions lub GitLab CI, który:
-  * Będzie wykonywał skanowanie obrazu kontenerowego (lub skanowanie zależności kodu) za pomocą Trivy
-  * Będzie przeprowadzał SAST z wykorzystaniem Semgrep
+    * Będzie wykonywał skanowanie obrazu kontenerowego (lub skanowanie zależności kodu) za pomocą Trivy
+    * Będzie przeprowadzał SAST z wykorzystaniem Semgrep
 * Automatyzacja testów bezpieczeństwa w ramach procesu Continuous Integration
 
+### Realizacja
+Zgodnie z instrukcją, utworzono proces CI/CD dla narzędzi Trivy oraz Semgrep.
+Zdecydowano się zmodyfikować przykładowy opis pipeline'u dostarczony przez prowadzącego w taki sposób, aby skorzystać z możliwości Github Actions oraz zakładki Security.
 
-### Instrukcje do realizacji
-1. Utwórz plik workflow w repozytorium GitHub w katalogu `.github/workflows/`, np. `security-scan.yml`.
-2. Przykładowa zawartość pliku security-scan.yml może wyglądać następująco:
-```shell
-name: Security Scan
+Zadanie rozdzielono na dwa osobne job'y, co pozwala na zrównoleglenie analizy statycznej.
+Wyniki obu narzędzi zapisywane są do formatu *sarif*, a następnie importowane do Githuba - można je podejrzeć w dedykowanej [zakładce](https://github.com/bugajakmateusz/tbo-task4/security/code-scanning?query=is%3Aopen+pr%3A1+).
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+W ramach zadania zmodyfikowano polecenie uruchamiające narzędzie semgrep w taki sposób, aby zwracane były informacje o wszystkich podatnościach - konfiguracja **p/security-audit**, zgodnie z [archiwalną dokumentacją narzędzia](https://github.com/Shopify/semgrep-rules-1/blob/develop/README.md#how-do-i-use-these-rules), powinny być używane do testów manualnych.
 
-jobs:
-  security-tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Build Docker image
-        run: |
-          docker build -t myapp:latest .
-
-      - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@v0.10.0
-        with:
-          image-ref: 'myapp:latest'
-          vuln-type: 'os,library'
-          format: 'table'
-
-      - name: Install Semgrep
-        run: |
-          sudo pip install semgrep
-
-      - name: Run Semgrep SAST
-        run: |
-          semgrep --config p/security-audit --error --json .
-```
-W powyższym przykładzie:
-* Budujemy obraz Dockera myapp:latest.
-* Uruchamiamy skan z użyciem Trivy (action trivy-action).
-* Instalujemy i uruchamiamy Semgrep.
-3. W przypadku realizacji z wykorzystaniem GitLab CI:
-  * Utwórz plik `.gitlab-ci.yml` w repozytorium GitLab CI
-  * Przykładowa zawartość może wyglądać następująco:
-```shell
-stages:
-  - build
-  - security
-
-build_job:
-  stage: build
-  script:
-    - docker build -t myapp:latest .
-
-trivy_scan:
-  stage: security
-  image: docker:stable
-  services:
-    - docker:dind
-  script:
-    - apk add --no-cache curl
-    - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -
-    - ./trivy image myapp:latest
-
-semgrep_scan:
-  stage: security
-  image: returntocorp/semgrep
-  script:
-    - semgrep --config p/security-audit --error --json .
-```
-W powyższym przykładzie:
-* W etapie „build” budujemy obraz Dockera.
-* W etapie „security” uruchamiamy skanowanie Trivy i Semgrep.
-
-### Oczekiwany wynik
-**Obowiązkowe:**
-* Stworzenie procesu CI/CD, który realizuje testy z wykorzystaniem Trivy i Semgrep.
-* Stworzenie Pull Requesta (na GitHub) lub Merge Requesta (na GitLab), zawierającego:
-  * Zmiany w kodzie (dodanie pliku security-scan.yml albo .gitlab-ci.yml oraz ewentualnie modyfikacje Dockerfile/kod projektu).
-  * Link do zadania w CI/CD, które się wykonało i pokazało wynik testów.
+### Wynik
+Stworzono proces CI/CD, który realizuje testy z wykorzystaniem Trivy i Semgrep: [security-scan.yml](.github/workflows/security-scan.yml)
+Stworzono Pull Requesta na GitHub zawierającego:
+    * Zmiany w kodzie (dodanie pliku security-scan.yml).
+    * Link do zadania w CI/CD, które się wykonało i pokazało wynik testów - link znajduje się w komentarzu ze względu na ponowne uruchomienie procesu CI/CD po zaktualizaniu pliku README.md.
 
 ## 4 Zadanie (obowiązkowe): Uruchomienie aplikacji lokalnie + DAST z wykorzystaniem ZAP
 
@@ -171,35 +48,29 @@ W powyższym przykładzie:
 * Poznanie narzędzia OWASP ZAP w trybie automatycznego skanowania (ZAP auto scan)
 * Porównanie wyników DAST (ZAP) z wynikami SAST (Semgrep) i SCA (Trivy)
 
+### Realizacja
+W ramach zadania zdecydowano się uruchomić narzędzie ZAP również w procesie CI/CD przy użyciu akcji *zaproxy/action-baseline*.
+Pozwala to na pełniejszą integrację z Githubem, ale przede wszystkim ciągłą kontrolę nad potencjalnymi podatnościami.
 
-### Instrukcje do realizacji
-1. Uruchom aplikacje `docker run -p 8080:8080 myapp:latest`
-2. Upewnij się, że aplikacja działa np. przez przeglądarkę wchodząc na `http://localhost:8080`
-3. Uruchom OWASP ZAP (możesz użyć obrazu Dockera lub instalacji lokalnej)
-```shell
-docker run -u zap -p 8089:8081 -v $(pwd):/zap/wrk/:rw -i zaproxy/zap-stable zap-baseline.py \
-  -t http://host.docker.internal:8080 \
-  -r zap_report.html
-```
-W przypadku windows'a:
-```shell
-docker run -u zap -p 8089:8081 -v %cd%:/zap/wrk/:rw -i zaproxy/zap-stable zap-baseline.py \
-  -t http://host.docker.internal:8080 \
-  -r zap_report.html
-```
-4. Po zakończeniu skanowania, ZAP wygeneruje raport (np. zap_report.html), który zawiera znalezione podatności (np. XSS, SQLi, niebezpieczne nagłówki HTTP).
-5. Porównaj wyniki z tymi, które uzyskałeś w testach SAST (Semgrep) i SCA (Trivy).
+### Wynik
+* Uruchomiono narzędzie typu DAST (OWASP ZAP) - wynik jego działania znajduje się w sekcji [Issues](https://github.com/bugajakmateusz/tbo-task4/issues/2).
 
+### Opis różnic w podatnościach
 
-### Oczekiwany wynik
-* Uruchomienie DAST (OWASP ZAP) i opis w PR (z zadania 3) rodzajów podatności wykrytych przez DAST, a niewykrytych przez SAST/SCA oraz wyjaśnienie, dlaczego takie różnice w wynikach występują.
+Narzędzia do statycznej analizy kodu (SAST), takie jak Trivy oraz Semgrep, koncentrują się na syntaktycznym sprawdzaniu kodu źródłowego przy użyciu wcześniej zdefiniowanych reguł. Dzięki temu możliwe jest wykrycie potencjalnych luk bezpieczeństwa na wczesnym etapie cyklu życia oprogramowania – jeszcze podczas jego tworzenia lub nawet podczas wyboru technologii.
 
+W przeanalizowanej aplikacji narzędzia te zidentyfikowały 17 krytycznych podatności, które w większości związane były z błędami takimi jak przepełnienie bufora lub odczyt spoza dozwolonego zakresu pamięci. Tego rodzaju problemy mogą prowadzić do eskalacji uprawnień, wykonania nieautoryzowanego kodu lub niekontrolowanego dostępu do danych.
 
-## Ocenianie
-Oceniany jest PR, który zawiera:
-- konfiguracje CI z zadania 4
-- treść zawierającą link do uruchomionego i zrealizowanego job'a z zadania 4
-- tresc zawuerającą wnioski z zadania 4
+Z kolei narzędzie ZAP (Zed Attack Proxy), będące przykładem dynamicznej analizy bezpieczeństwa aplikacji (DAST), przyjmuje inne podejście do oceny ryzyka. Analizuje ono działanie aplikacji w czasie rzeczywistym, emulując interakcje użytkownika i testując jej odpowiedzi. Kluczowym aspektem DAST jest fakt, że bada ono aplikację jako całość – w środowisku zbliżonym do produkcyjnego, z uwzględnieniem dodatkowych warstw infrastruktury, takich jak serwer webowy, reverse proxy czy inne elementy sieciowe.
+
+Podczas analizy dostarczonej aplikacji narzędzie ZAP nie wykryło żadnych podatności o krytycznym poziomie ryzyka. Na poziomie średnim zidentyfikowano jednak trzy istotne problemy:
+- Brak tokenów Anti-CSRF (Cross-Site Request Forgery)
+- Nieustawiony nagłówek Content Security Policy (CSP)
+- Brak nagłówka Anti-clickjacking
+
+Warto zauważyć, że tego typu podatności mają charakter bardziej strukturalny i koncentrują się na zabezpieczeniu aplikacji przed atakami skierowanymi na warstwę klienta oraz dostarczane treści. Problemy takie jak brak tokenów CSRF mogą umożliwić ataki manipulujące sesją użytkownika, podczas gdy brak odpowiednich nagłówków CSP i zabezpieczeń anty-clickjackingowych może prowadzić do przejęcia kontroli nad zawartością wyświetlaną użytkownikowi lub naruszenia integralności aplikacji.
+
+Podsumowując, zastosowanie zarówno SAST, jak i DAST pozwala na wszechstronne podejście do bezpieczeństwa aplikacji – od analizy kodu źródłowego po ocenę działania aplikacji w środowisku runtime. Integracja obu metod w procesie CI/CD pozwala na szybkie wykrywanie i eliminowanie podatności, zwiększając tym samym poziom bezpieczeństwa i niezawodności oprogramowania.
 
 ## Credits
 * Java application - [GitHub Repo](https://github.com/pedrohenriquelacombe/spring-thymeleaf-crud-example)

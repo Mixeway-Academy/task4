@@ -1,0 +1,75 @@
+name: Security Scan
+permissions:
+  security-events: write   # To upload sarif files
+  issues: write
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  trivy-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t myapp:latest .
+
+      - name: Run Trivy scan
+        uses: aquasecurity/trivy-action@0.9.2
+        with:
+          image-ref: 'myapp:latest'
+          vuln-type: 'os,library'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload trivy results
+        if: success() || failure() # always run even if the previous step fails
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-results.sarif
+
+
+  semgrep-check:
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    if: (github.actor != 'dependabot[bot]')
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run semgrep scan
+        run: semgrep scan --config auto --error --output scan_results.sarif --sarif
+
+      - name: Upload semgrep results
+        if: success() || failure() # always run even if the previous step fails
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: scan_results.sarif
+
+  zap-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t myapp:latest .
+
+      - name: Run Docker image
+        run: docker run -d -p 8080:8080 myapp:latest
+
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: 'http://localhost:8080'
+          cmd_options: '-a -T 1'
+
