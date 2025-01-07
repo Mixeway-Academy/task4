@@ -1,0 +1,272 @@
+[
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/_distutils/core.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/__init__.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected",
+        "path": "venv/lib/python3.12/site-packages/pygments/lexers/_lua_builtins.py",
+        "message": "Detected a dynamic value being used with urllib. urllib supports 'file://' schemes, so a dynamic value controlled by a malicious actor may allow them to read arbitrary files. Audit uses of urllib calls to ensure user data cannot control the URLs, or consider using the 'requests' library instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.eval-detected.eval-detected",
+        "path": "venv/lib/python3.12/site-packages/attr/_make.py",
+        "message": "Detected the use of eval(). eval() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/glom/cli.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.marshal.marshal-usage",
+        "path": "venv/lib/python3.12/site-packages/setuptools/command/bdist_egg.py",
+        "message": "The marshal module is not intended to be secure against erroneous or maliciously constructed data. Never unmarshal data received from an untrusted or unauthenticated source. See more details: https://docs.python.org/3/library/marshal.html?highlight=security"
+    },
+    {
+        "check_id": "python.lang.security.deserialization.pickle.avoid-cPickle",
+        "path": "venv/lib/python3.12/site-packages/playhouse/fields.py",
+        "message": "Avoid using `cPickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/boltons/namedutils.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.weak-ssl-version.weak-ssl-version",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/pyopenssl.py",
+        "message": "An insecure SSL version was detected. TLS versions 1.0, 1.1, and all SSL versions are considered weak encryption and are deprecated. Use 'ssl.PROTOCOL_TLSv1_2' or higher."
+    },
+    {
+        "check_id": "python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/config/_validate_pyproject/formats.py",
+        "message": "Detected a dynamic value being used with urllib. urllib supports 'file://' schemes, so a dynamic value controlled by a malicious actor may allow them to read arbitrary files. Audit uses of urllib calls to ensure user data cannot control the URLs, or consider using the 'requests' library instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.subprocess-shell-true.subprocess-shell-true",
+        "path": "venv/lib/python3.12/site-packages/pip/_internal/commands/configuration.py",
+        "message": "Found 'subprocess' function 'check_call' with 'shell=True'. This is dangerous because this call will spawn the command using a shell process. Doing so propagates current shell settings and variables, which makes it much easier for a malicious actor to execute commands. Use 'shell=False' instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.eval-detected.eval-detected",
+        "path": "venv/lib/python3.12/site-packages/packaging/licenses/__init__.py",
+        "message": "Detected the use of eval(). eval() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/boltons/funcutils.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/cElementTree.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1",
+        "path": "venv/lib/python3.12/site-packages/google/protobuf/proto_builder.py",
+        "message": "Detected SHA1 hash algorithm which is considered insecure. SHA1 is not collision resistant and is therefore not suitable as a cryptographic signature. Use SHA256 or SHA3 instead."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/common.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.audit.marshal.marshal-usage",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/style.py",
+        "message": "The marshal module is not intended to be secure against erroneous or maliciously constructed data. Never unmarshal data received from an untrusted or unauthenticated source. See more details: https://docs.python.org/3/library/marshal.html?highlight=security"
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/pkg_resources/__init__.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/face/sinter.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/expatbuilder.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.deserialization.pickle.avoid-pickle",
+        "path": "venv/lib/python3.12/site-packages/playhouse/fields.py",
+        "message": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+    },
+    {
+        "check_id": "python.lang.security.audit.eval-detected.eval-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/_vendor/packaging/licenses/__init__.py",
+        "message": "Detected the use of eval(). eval() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.weak-ssl-version.weak-ssl-version",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/securetransport.py",
+        "message": "An insecure SSL version was detected. TLS versions 1.0, 1.1, and all SSL versions are considered weak encryption and are deprecated. Use 'ssl.PROTOCOL_TLSv1_2' or higher."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/__init__.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.eval-detected.eval-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/_vendor/jaraco/functools/__init__.py",
+        "message": "Detected the use of eval(). eval() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.httpsconnection-detected.httpsconnection-detected",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/util.py",
+        "message": "The HTTPSConnection API has changed frequently with minor releases of Python. Ensure you are using the API for your version of Python securely. For example, Python 3 versions prior to 3.4.3 will not verify SSL certificates by default. See https://docs.python.org/3/library/http.client.html#http.client.HTTPSConnection for more information."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/pygments/lexers/__init__.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/pulldom.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.audit.marshal.marshal-usage",
+        "path": "venv/lib/python3.12/site-packages/rich/style.py",
+        "message": "The marshal module is not intended to be secure against erroneous or maliciously constructed data. Never unmarshal data received from an untrusted or unauthenticated source. See more details: https://docs.python.org/3/library/marshal.html?highlight=security"
+    },
+    {
+        "check_id": "python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1",
+        "path": "venv/lib/python3.12/site-packages/requests/auth.py",
+        "message": "Detected SHA1 hash algorithm which is considered insecure. SHA1 is not collision resistant and is therefore not suitable as a cryptographic signature. Use SHA256 or SHA3 instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/build_meta.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.subprocess-shell-true.subprocess-shell-true",
+        "path": "venv/lib/python3.12/site-packages/click/_termui_impl.py",
+        "message": "Found 'subprocess' function 'Popen' with 'shell=True'. This is dangerous because this call will spawn the command using a shell process. Doing so propagates current shell settings and variables, which makes it much easier for a malicious actor to execute commands. Use 'shell=False' instead."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/expatreader.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/minidom.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/pygments/formatters/__init__.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/sandbox.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xmlrpc.use-defused-xmlrpc",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/xmlrpc.py",
+        "message": "Detected use of xmlrpc. xmlrpc is not inherently safe from vulnerabilities. Use defusedxml.xmlrpc instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.weak-ssl-version.weak-ssl-version",
+        "path": "venv/lib/python3.12/site-packages/urllib3/contrib/pyopenssl.py",
+        "message": "An insecure SSL version was detected. TLS versions 1.0, 1.1, and all SSL versions are considered weak encryption and are deprecated. Use 'ssl.PROTOCOL_TLSv1_2' or higher."
+    },
+    {
+        "check_id": "python.lang.security.audit.ssl-wrap-socket-is-deprecated.ssl-wrap-socket-is-deprecated",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/ssl_.py",
+        "message": "'ssl.wrap_socket()' is deprecated. This function creates an insecure socket without server name indication or hostname matching. Instead, create an SSL context using 'ssl.SSLContext()' and use that to wrap a socket."
+    },
+    {
+        "check_id": "python.lang.security.deserialization.pickle.avoid-pickle",
+        "path": "venv/lib/python3.12/site-packages/setuptools/sandbox.py",
+        "message": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xmlrpc.use-defused-xmlrpc",
+        "path": "venv/lib/python3.12/site-packages/pip/_internal/network/xmlrpc.py",
+        "message": "Detected use of xmlrpc. xmlrpc is not inherently safe from vulnerabilities. Use defusedxml.xmlrpc instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/pkg_resources/__init__.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/sax.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xmlrpc.use-defused-xmlrpc",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/compat.py",
+        "message": "Detected use of xmlrpc. xmlrpc is not inherently safe from vulnerabilities. Use defusedxml.xmlrpc instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/package_index.py",
+        "message": "Detected a dynamic value being used with urllib. urllib supports 'file://' schemes, so a dynamic value controlled by a malicious actor may allow them to read arbitrary files. Audit uses of urllib calls to ensure user data cannot control the URLs, or consider using the 'requests' library instead."
+    },
+    {
+        "check_id": "python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1",
+        "path": "venv/lib/python3.12/site-packages/pip/_vendor/requests/auth.py",
+        "message": "Detected SHA1 hash algorithm which is considered insecure. SHA1 is not collision resistant and is therefore not suitable as a cryptographic signature. Use SHA256 or SHA3 instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.exec-detected.exec-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/launch.py",
+        "message": "Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/defusedxml/ElementTree.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xmlrpc.use-defused-xmlrpc",
+        "path": "venv/lib/python3.12/site-packages/pip/_internal/commands/search.py",
+        "message": "Detected use of xmlrpc. xmlrpc is not inherently safe from vulnerabilities. Use defusedxml.xmlrpc instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected",
+        "path": "venv/lib/python3.12/site-packages/setuptools/_vendor/jaraco/context.py",
+        "message": "Detected a dynamic value being used with urllib. urllib supports 'file://' schemes, so a dynamic value controlled by a malicious actor may allow them to read arbitrary files. Audit uses of urllib calls to ensure user data cannot control the URLs, or consider using the 'requests' library instead."
+    },
+    {
+        "check_id": "python.lang.security.use-defused-xml.use-defused-xml",
+        "path": "venv/lib/python3.12/site-packages/boltons/ecoutils.py",
+        "message": "The Python documentation recommends using `defusedxml` instead of `xml` because the native Python `xml` library is vulnerable to XML External Entity (XXE) attacks. These attacks can leak confidential data and \"XML bombs\" can cause denial of service."
+    },
+    {
+        "check_id": "python.lang.security.audit.marshal.marshal-usage",
+        "path": "venv/lib/python3.12/site-packages/setuptools/depends.py",
+        "message": "The marshal module is not intended to be secure against erroneous or maliciously constructed data. Never unmarshal data received from an untrusted or unauthenticated source. See more details: https://docs.python.org/3/library/marshal.html?highlight=security"
+    },
+    {
+        "check_id": "python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1",
+        "path": "venv/lib/python3.12/site-packages/face/sinter.py",
+        "message": "Detected SHA1 hash algorithm which is considered insecure. SHA1 is not collision resistant and is therefore not suitable as a cryptographic signature. Use SHA256 or SHA3 instead."
+    },
+    {
+        "check_id": "python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected",
+        "path": "venv/lib/python3.12/site-packages/jsonschema/validators.py",
+        "message": "Detected a dynamic value being used with urllib. urllib supports 'file://' schemes, so a dynamic value controlled by a malicious actor may allow them to read arbitrary files. Audit uses of urllib calls to ensure user data cannot control the URLs, or consider using the 'requests' library instead."
+    }
+]
