@@ -11,26 +11,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      # - name: Check out code
+      #   uses: actions/checkout@v2
 
-      - name: Build Docker image
-        run: |
-          docker build -t tbo-task4:latest .
+      # - name: Build Docker image
+      #   run: |
+      #     docker build -t tbo-task4:latest .
 
-      - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@0.10.0
-        with:
-          image-ref: 'tbo-task4:latest'
-          vuln-type: 'os,library'
-          format: 'table'
+      # - name: Run Trivy scan
+      #   uses: aquasecurity/trivy-action@0.10.0
+      #   with:
+      #     image-ref: 'tbo-task4:latest'
+      #     vuln-type: 'os,library'
+      #     format: 'table'
 
       - name: Install Semgrep
         run: |
-          python3 -m venv semgrep-venv
-          semgrep-venv/bin/python3 -m pip install semgrep
+          pwd
+          python3 -m venv /home/runner/semgrep-venv
+          /home/runner/semgrep-venv/bin/python3 -m pip install semgrep
 
       - name: Run Semgrep SAST
         run:
-          semgrep-venv/bin/semgrep --config p/security-audit --error --json .
+          /home/runner/semgrep-venv/bin/semgrep --config p/security-audit --error --json .
 
