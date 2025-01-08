@@ -27,7 +27,7 @@ jobs:
 
       - name: Install Semgrep
         run: |
-          sudo snap install semgrep
+          sudo snap install semgrep --classic
 
       - name: Run Semgrep SAST
         run:
