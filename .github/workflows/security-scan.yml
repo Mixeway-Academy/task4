@@ -29,7 +29,7 @@ jobs:
         run: |
           sudo snap install semgrep --classic
           sudo snap connections semgrep
-          sudo snap connect semgrep:home
+          sudo snap connect semgrep:personal-files
           sudo snap connections semgrep
 
       - name: Run Semgrep SAST
