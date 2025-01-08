@@ -29,8 +29,9 @@ jobs:
         run: |
           sudo snap install semgrep --classic
           sudo snap interfaces semgrep
+          sudo snap connect semgrep:home
 
-      # - name: Run Semgrep SAST
-      #   run:
-      #     semgrep --config p/security-audit --error --json .
+      - name: Run Semgrep SAST
+        run:
+          semgrep --config p/security-audit --error --json .
 
