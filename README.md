@@ -197,9 +197,9 @@ docker run -u zap -p 8089:8081 -v %cd%:/zap/wrk/:rw -i zaproxy/zap-stable zap-ba
 
 ## Ocenianie
 Oceniany jest PR, który zawiera:
-- konfiguracje CI z zadania 4
-- treść zawierającą link do uruchomionego i zrealizowanego job'a z zadania 4
-- tresc zawuerającą wnioski z zadania 4
+- konfiguracje CI z zadania 3
+- treść zawierającą link do uruchomionego i zrealizowanego job'a z zadania 3
+- tresc zawierającą wnioski z zadania 4
 
 ## Credits
 * Java application - [GitHub Repo](https://github.com/pedrohenriquelacombe/spring-thymeleaf-crud-example)
