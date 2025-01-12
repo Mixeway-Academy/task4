@@ -34,7 +34,7 @@ docker run --rm \
 w efekcie otrzymano [raport](./raporty/report_semgrep.json): `Ran 445 rules on 1796 files: 26 findings`
 ## zadaie 3.
 
-W tym zadaniu należało zbudować kompletny proces **CI/CD** w gh actions lub Girlab CI, ktory
+W tym zadaniu należało zbudować kompletny proces **CI/CD** w GH Actions lub GitLab CI, ktory
 - wykonuje skanowanie obrazu kontenerowego (lub zaleznosci kodu) za pomocą Trivy
 - przeprowadza SAST z wykorzystaniem Semgrep 
 
@@ -66,7 +66,7 @@ jobs:
           docker build -t myapp:latest .
 
       - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@v0.10.0
+        uses: aquasecurity/trivy-action@0.29.0
         with:
           image-ref: 'myapp:latest'
           vuln-type: 'os,library'
@@ -74,7 +74,7 @@ jobs:
 
       - name: Install Semgrep
         run: |
-          sudo pip install semgrep
+          sudo pip install semgrep --ignore-installed rich
 
       - name: Run Semgrep SAST
         run: |
@@ -116,9 +116,31 @@ tym razem
 - w etapie "build" budujemy obraz Dockera
 - w etapie "security" uruchamiamy skanowanie Trivy i Semgrep
 
+**link do zadania (CI/CD job) które sie wykonało i pokazało wynik testów**:  https://github.com/mrospond/task4/actions/runs/12736515532/job/35496485443
 
 
 ## zadanie 4.
 ostatnie zadanie polegało na zweryfikowaniu dynamicznego bezpieczeństwa aplikacji uruchomionej w kontenerze, poznaniu narzędzia OWASP ZAP w trybie automatycznego skanowania (ZAP auto scan) oraz porównaniu wyników DAST (ZAP) z wynikami SAST (Semgrep) i SCA (Trivy)
 
-W tym celu, w dockerze uruchomiono aplikację Java (utworzony wczesniej obraz myapp:latest)
+W tym celu, w dockerze uruchomiono aplikację Java (utworzony wczesniej obraz myapp:latest), po czym uruchomiono OWASP ZAP z obrazu dockera
+
+```bash
+docker run -u zap -p 8089:8081 -v $(pwd):/zap/wrk/:rw -i zaproxy/zap-stable zap-baseline.py \
+  -t http://host.docker.internal:8080 \
+  -r zap_report.html
+```
+
+po zakończeniu skanowania ZAP wygenerował [raport](./raporty/zap_report.html) ze znalezionymi podatnościami.
+![raport](./raporty/zap_screen.png)
+
+
+
+W porównaniu ze wcześniej testowanymi skanerami, tj. SAST (Semgrep) i SCA (Trivy), DAST (OWASP ZAP) wykrył podatności takie jak: CSP Header Not Set, Missing Anti-clickjacking Header, Session ID in URL Rewrite, Cookie without SameSite Attribute, Permissions Policy Header Not Set, X-Content-Type-Options Header Missing itd.
+
+Wyniki SAST, SCA, DAST różnią się miedzy soba - wynika to z techniki wykonywania skanu. Kazde z tych narzedzi bada inne aspekty bezpieczenstwa aplikacji
+
+SAST skupia się na analizie kodu źródłowego, implementowanej logiki, configów, bibliotek, zabezpieczeń ale nie testuje rzeczywsitego działania aplikacji (w czasie rzeczywistym)
+
+SCA skupia się jedynie na zależnościach i komponentach zewnetrznych (wyszukiwanie znanych podatnosci w bibliotekach, itd), tj. wersje bibliotek i obrazy kontenerów
+
+DAST uzupełnia SAST i SCA, wykrywając podatności niewidoczne w kodzie źródłowym lub zależnościach. Skupia się na dzialajacej aplikacji i wykrywa podatnosci w czasie rzeczywistym. 
