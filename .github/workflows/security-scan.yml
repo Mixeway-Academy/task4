@@ -16,7 +16,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t myapp:latest .
+          docker build -t task4:latest .
 
       - name: Run Trivy scan
         uses: aquasecurity/trivy-action@0.29.0
