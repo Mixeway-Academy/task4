@@ -1,0 +1,1165 @@
+                     
+                     
+┌───────────────────┐
+│ 344 Code Findings │
+└───────────────────┘
+              
+    Dockerfile
+   ❯❯❱ dockerfile.security.missing-user-entrypoint.missing-user-entrypoint
+          By not specifying a USER, a program in the container may run as 'root'. This is a security hazard.
+          If an attacker can control a process running as root, they may have control over the container.   
+          Ensure that the last USER in a Dockerfile is a USER other than 'root'.                            
+          Details: https://sg.run/k281                                                                      
+                                                                                                            
+           ▶▶┆ Autofix ▶ USER non-root ENTRYPOINT ["java", "-jar", "/app.jar"]
+           22┆ ENTRYPOINT ["java", "-jar", "/app.jar"]
+                                                                      
+    src/main/resources/static/vendors/bootstrap/js/bootstrap.bundle.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `configTypes` function argument, this might allow an attacker to cause a     
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          213┆ if (!new RegExp(expectedTypes).test(valueType)) {
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `property` function argument, this might allow an attacker to cause a Regular
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          213┆ if (!new RegExp(expectedTypes).test(valueType)) {
+   
+   ❯❯❱ javascript.browser.security.insecure-document-method.insecure-document-method
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+          Details: https://sg.run/LwA9                                                                        
+                                                                                                              
+          5547┆ element.innerHTML = this._config.template;
+            ⋮┆----------------------------------------
+          5583┆ element.innerHTML = content;
+                                                                   
+    src/main/resources/static/vendors/bootstrap/js/bootstrap.esm.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `configTypes` function argument, this might allow an attacker to cause a     
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          209┆ if (!new RegExp(expectedTypes).test(valueType)) {
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `property` function argument, this might allow an attacker to cause a Regular
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          209┆ if (!new RegExp(expectedTypes).test(valueType)) {
+   
+   ❯❯❱ javascript.browser.security.insecure-document-method.insecure-document-method
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+          Details: https://sg.run/LwA9                                                                        
+                                                                                                              
+          3789┆ element.innerHTML = this._config.template;
+            ⋮┆----------------------------------------
+          3825┆ element.innerHTML = content;
+                                                               
+    src/main/resources/static/vendors/bootstrap/js/bootstrap.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `configTypes` function argument, this might allow an attacker to cause a     
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          235┆ if (!new RegExp(expectedTypes).test(valueType)) {
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `property` function argument, this might allow an attacker to cause a Regular
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          235┆ if (!new RegExp(expectedTypes).test(valueType)) {
+   
+   ❯❯❱ javascript.browser.security.insecure-document-method.insecure-document-method
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+          Details: https://sg.run/LwA9                                                                        
+                                                                                                              
+          3815┆ element.innerHTML = this._config.template;
+            ⋮┆----------------------------------------
+          3851┆ element.innerHTML = content;
+                                                                   
+    src/main/resources/static/vendors/fontawesome/js/fontawesome.js
+   ❯❯❱ javascript.browser.security.insecure-document-method.insecure-document-method
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+          Details: https://sg.run/LwA9                                                                        
+                                                                                                              
+          630┆ style.innerHTML = css;
+            ⋮┆----------------------------------------
+          1360┆ node.outerHTML = newOuterHTML + (config.keepOriginalSource && node.tagName.toLowerCase()
+               !== 'svg' ? "<!-- ".concat(node.outerHTML, " Font Awesome fontawesome.com -->") : '');   
+            ⋮┆----------------------------------------
+          1364┆ newNode.outerHTML = newOuterHTML;
+   
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `_ref` function argument, this might allow an attacker to cause a Regular    
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1376┆ var forSvg = new RegExp("".concat(config.familyPrefix, "-.*"));
+   
+   ❯❯❱ javascript.browser.security.insecure-document-method.insecure-document-method
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+          Details: https://sg.run/LwA9                                                                        
+                                                                                                              
+          1397┆ node.innerHTML = newInnerHTML;
+            ⋮┆----------------------------------------
+          2056┆ element.outerHTML = abstract.map(function (a) {
+          2057┆   return toHtml(a);
+          2058┆ }).join('\n');
+            ⋮┆----------------------------------------
+          2190┆ container.innerHTML = val.html;
+                                                            
+    src/main/resources/static/vendors/jquery-mask/Dockerfile
+   ❯❯❱ dockerfile.security.missing-user.missing-user
+          By not specifying a USER, a program in the container may run as 'root'. This is a security hazard.
+          If an attacker can control a process running as root, they may have control over the container.   
+          Ensure that the last USER in a Dockerfile is a USER other than 'root'.                            
+          Details: https://sg.run/Gbvn                                                                      
+                                                                                                            
+           ▶▶┆ Autofix ▶ USER non-root CMD ["/sbin/my_init"]
+            4┆ CMD ["/sbin/my_init"]
+   
+    ❯❱ dockerfile.security.no-sudo-in-dockerfile.no-sudo-in-dockerfile
+          Avoid using sudo in Dockerfiles. Running processes as a non-root user can help  reduce the potential
+          impact of configuration errors and security vulnerabilities.                                        
+          Details: https://sg.run/80Q7                                                                        
+                                                                                                              
+           32┆ RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+                                                           
+    src/main/resources/static/vendors/jquery-mask/deploy.rb
+    ❯❱ ruby.lang.security.dangerous-subshell.dangerous-subshell
+          Detected non-static command inside `...`. If unverified user data can reach this call site, this is 
+          a code injection vulnerability. A malicious actor can inject a malicious script to execute arbitrary
+          code.                                                                                               
+          Details: https://sg.run/NrxL                                                                        
+                                                                                                              
+           44┆ `git commit -am 'generating jquery mask files #{JMASK_VERSION}'`
+                                                                    
+    src/main/resources/static/vendors/jquery-mask/src/jquery.mask.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `mask` function argument, this might allow an attacker to cause a Regular    
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          165┆ r = r.replace(new RegExp('(' + oRecursive.digit + '(.*' + oRecursive.digit + ')?)'),
+               '($1)?')                                                                            
+            ⋮┆----------------------------------------
+          166┆ .replace(new RegExp(oRecursive.digit, 'g'), oRecursive.pattern);
+            ⋮┆----------------------------------------
+          169┆ return new RegExp(r);
+                     
+    trivy-report.html
+    ❯❱ html.security.plaintext-http-link.plaintext-http-link
+          This link points to a plaintext HTTP URL. Prefer an encrypted HTTPS URL if possible.
+          Details: https://sg.run/RA5q                                                        
+                                                                                              
+          149┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/5">http://www.openwall.com/lists/oss-security/2024/03/27/5</a>
+            ⋮┆----------------------------------------
+          150┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/6">http://www.openwall.com/lists/oss-security/2024/03/27/6</a>
+            ⋮┆----------------------------------------
+          151┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/7">http://www.openwall.com/lists/oss-security/2024/03/27/7</a>
+            ⋮┆----------------------------------------
+          152┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/8">http://www.openwall.com/lists/oss-security/2024/03/27/8</a>
+            ⋮┆----------------------------------------
+          153┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/9">http://www.openwall.com/lists/oss-security/2024/03/27/9</a>
+            ⋮┆----------------------------------------
+          154┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/28/1">http://www.openwall.com/lists/oss-security/2024/03/28/1</a>
+            ⋮┆----------------------------------------
+          155┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/28/2">http://www.openwall.com/lists/oss-security/2024/03/28/2</a>
+            ⋮┆----------------------------------------
+          156┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/28/3">http://www.openwall.com/lists/oss-security/2024/03/28/3</a>
+            ⋮┆----------------------------------------
+          195┆ <a href="http://seclists.org/oss-sec/2016/q1/452">http://seclists.org/oss-
+               sec/2016/q1/452</a>                                                       
+            ⋮┆----------------------------------------
+          196┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2016/02/28/2">http://www.openwall.com/lists/oss-security/2016/02/28/2</a>
+            ⋮┆----------------------------------------
+          197┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2016/02/28/3">http://www.openwall.com/lists/oss-security/2016/02/28/3</a>
+            ⋮┆----------------------------------------
+          213┆ <a href="http://lists.gnu.org/archive/html/coreutils/2017-                             
+               12/msg00045.html">http://lists.gnu.org/archive/html/coreutils/2017-12/msg00045.html</a>
+            ⋮┆----------------------------------------
+          323┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/5">http://www.openwall.com/lists/oss-security/2024/03/27/5</a>
+            ⋮┆----------------------------------------
+          324┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/6">http://www.openwall.com/lists/oss-security/2024/03/27/6</a>
+            ⋮┆----------------------------------------
+          325┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/7">http://www.openwall.com/lists/oss-security/2024/03/27/7</a>
+            ⋮┆----------------------------------------
+          326┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/8">http://www.openwall.com/lists/oss-security/2024/03/27/8</a>
+            ⋮┆----------------------------------------
+          327┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/27/9">http://www.openwall.com/lists/oss-security/2024/03/27/9</a>
+            ⋮┆----------------------------------------
+          328┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/28/1">http://www.openwall.com/lists/oss-security/2024/03/28/1</a>
+            ⋮┆----------------------------------------
+          329┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/28/2">http://www.openwall.com/lists/oss-security/2024/03/28/2</a>
+            ⋮┆----------------------------------------
+          330┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/03/28/3">http://www.openwall.com/lists/oss-security/2024/03/28/3</a>
+            ⋮┆----------------------------------------
+          431┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/04/17/9">http://www.openwall.com/lists/oss-security/2024/04/17/9</a>
+            ⋮┆----------------------------------------
+          432┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/04/18/4">http://www.openwall.com/lists/oss-security/2024/04/18/4</a>
+            ⋮┆----------------------------------------
+          433┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/04/24/2">http://www.openwall.com/lists/oss-security/2024/04/24/2</a>
+            ⋮┆----------------------------------------
+          434┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/1">http://www.openwall.com/lists/oss-security/2024/05/27/1</a>
+            ⋮┆----------------------------------------
+          435┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/2">http://www.openwall.com/lists/oss-security/2024/05/27/2</a>
+            ⋮┆----------------------------------------
+          436┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/3">http://www.openwall.com/lists/oss-security/2024/05/27/3</a>
+            ⋮┆----------------------------------------
+          437┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/4">http://www.openwall.com/lists/oss-security/2024/05/27/4</a>
+            ⋮┆----------------------------------------
+          438┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/5">http://www.openwall.com/lists/oss-security/2024/05/27/5</a>
+            ⋮┆----------------------------------------
+          439┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/6">http://www.openwall.com/lists/oss-security/2024/05/27/6</a>
+            ⋮┆----------------------------------------
+          440┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          483┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          588┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          627┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          666┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          706┆ <a href="http://cxib.net/stuff/glob-0day.c">http://cxib.net/stuff/glob-0day.c</a>
+            ⋮┆----------------------------------------
+          707┆ <a href="http://securityreason.com/achievement_securityalert/89">http://securityreason.com/
+               achievement_securityalert/89</a>                                                           
+            ⋮┆----------------------------------------
+          708┆ <a href="http://securityreason.com/exploitalert/9223">http://securityreason.com/exploitaler
+               t/9223</a>                                                                                 
+            ⋮┆----------------------------------------
+          723┆ <a                                                                                        
+               href="http://www.securityfocus.com/bid/107160">http://www.securityfocus.com/bid/107160</a>
+            ⋮┆----------------------------------------
+          756┆ <a                                                                                        
+               href="http://www.securityfocus.com/bid/109167">http://www.securityfocus.com/bid/109167</a>
+            ⋮┆----------------------------------------
+          773┆ <a                                                                                        
+               href="http://www.securityfocus.com/bid/109162">http://www.securityfocus.com/bid/109162</a>
+            ⋮┆----------------------------------------
+          884┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/04/17/9">http://www.openwall.com/lists/oss-security/2024/04/17/9</a>
+            ⋮┆----------------------------------------
+          885┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/04/18/4">http://www.openwall.com/lists/oss-security/2024/04/18/4</a>
+            ⋮┆----------------------------------------
+          886┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/04/24/2">http://www.openwall.com/lists/oss-security/2024/04/24/2</a>
+            ⋮┆----------------------------------------
+          887┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/1">http://www.openwall.com/lists/oss-security/2024/05/27/1</a>
+            ⋮┆----------------------------------------
+          888┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/2">http://www.openwall.com/lists/oss-security/2024/05/27/2</a>
+            ⋮┆----------------------------------------
+          889┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/3">http://www.openwall.com/lists/oss-security/2024/05/27/3</a>
+            ⋮┆----------------------------------------
+          890┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/4">http://www.openwall.com/lists/oss-security/2024/05/27/4</a>
+            ⋮┆----------------------------------------
+          891┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/5">http://www.openwall.com/lists/oss-security/2024/05/27/5</a>
+            ⋮┆----------------------------------------
+          892┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/05/27/6">http://www.openwall.com/lists/oss-security/2024/05/27/6</a>
+            ⋮┆----------------------------------------
+          893┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          936┆ <a href="http://www.openwall.com/lists/oss-                                       
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          1041┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          1080┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          1119┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/07/22/5">http://www.openwall.com/lists/oss-security/2024/07/22/5</a>
+            ⋮┆----------------------------------------
+          1159┆ <a href="http://cxib.net/stuff/glob-0day.c">http://cxib.net/stuff/glob-0day.c</a>
+            ⋮┆----------------------------------------
+          1160┆ <a href="http://securityreason.com/achievement_securityalert/89">http://securityreason.com
+               /achievement_securityalert/89</a>                                                          
+            ⋮┆----------------------------------------
+          1161┆ <a href="http://securityreason.com/exploitalert/9223">http://securityreason.com/exploitale
+               rt/9223</a>                                                                                
+            ⋮┆----------------------------------------
+          1176┆ <a                                                                                       
+               href="http://www.securityfocus.com/bid/107160">http://www.securityfocus.com/bid/107160</a>
+            ⋮┆----------------------------------------
+          1209┆ <a                                                                                       
+               href="http://www.securityfocus.com/bid/109167">http://www.securityfocus.com/bid/109167</a>
+            ⋮┆----------------------------------------
+          1226┆ <a                                                                                       
+               href="http://www.securityfocus.com/bid/109162">http://www.securityfocus.com/bid/109162</a>
+            ⋮┆----------------------------------------
+          1299┆ <a href="http://lists.opensuse.org/opensuse-security-                      
+               announce/2019-06/msg00074.html">http://lists.opensuse.org/opensuse-security-
+               announce/2019-06/msg00074.html</a>                                          
+            ⋮┆----------------------------------------
+          1598┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/22/1">http://www.openwall.com/lists/oss-security/2024/03/22/1</a>
+            ⋮┆----------------------------------------
+          1599┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/22/2">http://www.openwall.com/lists/oss-security/2024/03/22/2</a>
+            ⋮┆----------------------------------------
+          1635┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/22/1">http://www.openwall.com/lists/oss-security/2024/03/22/1</a>
+            ⋮┆----------------------------------------
+          1636┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/22/2">http://www.openwall.com/lists/oss-security/2024/03/22/2</a>
+            ⋮┆----------------------------------------
+          1666┆ <a href="http://arcticdog.wordpress.com/2012/08/29/beast-openssl-and-          
+               apache/">http://arcticdog.wordpress.com/2012/08/29/beast-openssl-and-apache/</a>
+            ⋮┆----------------------------------------
+          1667┆ <a href="http://blog.mozilla.com/security/2011/09/27/attack-against-tls-protected-       
+               communications/">http://blog.mozilla.com/security/2011/09/27/attack-against-tls-protected-
+               communications/</a>                                                                       
+            ⋮┆----------------------------------------
+          1668┆ <a href="http://blogs.technet.com/b/msrc/archive/2011/09/26/microsoft-releases-security-
+               advisory-2588513.aspx">http://blogs.technet.com/b/msrc/archive/2011/09/26/microsoft-     
+               releases-security-advisory-2588513.aspx</a>                                              
+            ⋮┆----------------------------------------
+          1669┆ <a href="http://blogs.technet.com/b/srd/archive/2011/09/26/is-ssl-broken-more-about-    
+               security-advisory-2588513.aspx">http://blogs.technet.com/b/srd/archive/2011/09/26/is-ssl-
+               broken-more-about-security-advisory-2588513.aspx</a>                                     
+            ⋮┆----------------------------------------
+          1670┆ <a href="http://curl.haxx.se/docs/adv_20120124B.html">http://curl.haxx.se/docs/adv_2012012
+               4B.html</a>                                                                                
+            ⋮┆----------------------------------------
+          1671┆ <a href="http://downloads.asterisk.org/pub/security/AST-2016-            
+               001.html">http://downloads.asterisk.org/pub/security/AST-2016-001.html</a>
+            ⋮┆----------------------------------------
+          1672┆ <a href="http://ekoparty.org/2011/juliano-rizzo.php">http://ekoparty.org/2011/juliano-
+               rizzo.php</a>                                                                          
+            ⋮┆----------------------------------------
+          1673┆ <a href="http://eprint.iacr.org/2004/111">http://eprint.iacr.org/2004/111</a>
+            ⋮┆----------------------------------------
+          1674┆ <a href="http://eprint.iacr.org/2006/136">http://eprint.iacr.org/2006/136</a>
+            ⋮┆----------------------------------------
+          1675┆ <a href="http://googlechromereleases.blogspot.com/2011/10/chrome-stable-    
+               release.html">http://googlechromereleases.blogspot.com/2011/10/chrome-stable-
+               release.html</a>                                                             
+            ⋮┆----------------------------------------
+          1676┆ <a href="http://isc.sans.edu/diary/SSL+TLS+part+3+/11635">http://isc.sans.edu/diary/SSL+TL
+               S+part+3+/11635</a>                                                                        
+            ⋮┆----------------------------------------
+          1677┆ <a href="http://lists.apple.com/archives/Security-                        
+               announce/2011//Oct/msg00001.html">http://lists.apple.com/archives/Security-
+               announce/2011//Oct/msg00001.html</a>                                       
+            ⋮┆----------------------------------------
+          1678┆ <a href="http://lists.apple.com/archives/Security-                        
+               announce/2011//Oct/msg00002.html">http://lists.apple.com/archives/Security-
+               announce/2011//Oct/msg00002.html</a>                                       
+            ⋮┆----------------------------------------
+          1679┆ <a href="http://lists.apple.com/archives/security-                       
+               announce/2012/Feb/msg00000.html">http://lists.apple.com/archives/security-
+               announce/2012/Feb/msg00000.html</a>                                       
+            ⋮┆----------------------------------------
+          1680┆ <a href="http://lists.apple.com/archives/security-                       
+               announce/2012/Jul/msg00001.html">http://lists.apple.com/archives/security-
+               announce/2012/Jul/msg00001.html</a>                                       
+            ⋮┆----------------------------------------
+          1681┆ <a href="http://lists.apple.com/archives/security-                       
+               announce/2012/May/msg00001.html">http://lists.apple.com/archives/security-
+               announce/2012/May/msg00001.html</a>                                       
+            ⋮┆----------------------------------------
+          1682┆ <a href="http://lists.apple.com/archives/security-                       
+               announce/2012/Sep/msg00004.html">http://lists.apple.com/archives/security-
+               announce/2012/Sep/msg00004.html</a>                                       
+            ⋮┆----------------------------------------
+          1683┆ <a href="http://lists.apple.com/archives/security-                       
+               announce/2013/Oct/msg00004.html">http://lists.apple.com/archives/security-
+               announce/2013/Oct/msg00004.html</a>                                       
+            ⋮┆----------------------------------------
+          1684┆ <a href="http://lists.opensuse.org/opensuse-security-                      
+               announce/2012-01/msg00049.html">http://lists.opensuse.org/opensuse-security-
+               announce/2012-01/msg00049.html</a>                                          
+            ⋮┆----------------------------------------
+          1685┆ <a href="http://lists.opensuse.org/opensuse-security-                      
+               announce/2012-01/msg00051.html">http://lists.opensuse.org/opensuse-security-
+               announce/2012-01/msg00051.html</a>                                          
+            ⋮┆----------------------------------------
+          1686┆ <a href="http://lists.opensuse.org/opensuse-security-                      
+               announce/2012-05/msg00009.html">http://lists.opensuse.org/opensuse-security-
+               announce/2012-05/msg00009.html</a>                                          
+            ⋮┆----------------------------------------
+          1687┆ <a href="http://lists.opensuse.org/opensuse-security-                      
+               announce/2020-01/msg00040.html">http://lists.opensuse.org/opensuse-security-
+               announce/2020-01/msg00040.html</a>                                          
+            ⋮┆----------------------------------------
+          1688┆ <a href="http://marc.info/?l=bugtraq&amp;m=132750579901589&amp;w=2">http://marc.info/?l=bu
+               gtraq&amp;m=132750579901589&amp;w=2</a>                                                    
+            ⋮┆----------------------------------------
+          1689┆ <a href="http://marc.info/?l=bugtraq&amp;m=132872385320240&amp;w=2">http://marc.info/?l=bu
+               gtraq&amp;m=132872385320240&amp;w=2</a>                                                    
+            ⋮┆----------------------------------------
+          1690┆ <a href="http://marc.info/?l=bugtraq&amp;m=133365109612558&amp;w=2">http://marc.info/?l=bu
+               gtraq&amp;m=133365109612558&amp;w=2</a>                                                    
+            ⋮┆----------------------------------------
+          1691┆ <a href="http://marc.info/?l=bugtraq&amp;m=133728004526190&amp;w=2">http://marc.info/?l=bu
+               gtraq&amp;m=133728004526190&amp;w=2</a>                                                    
+            ⋮┆----------------------------------------
+          1692┆ <a href="http://marc.info/?l=bugtraq&amp;m=134254866602253&amp;w=2">http://marc.info/?l=bu
+               gtraq&amp;m=134254866602253&amp;w=2</a>                                                    
+            ⋮┆----------------------------------------
+          1693┆ <a href="http://marc.info/?l=bugtraq&amp;m=134254957702612&amp;w=2">http://marc.info/?l=bu
+               gtraq&amp;m=134254957702612&amp;w=2</a>                                                    
+            ⋮┆----------------------------------------
+          1694┆ <a href="http://my.opera.com/securitygroup/blog/2011/09/28/the-beast-ssl-tls-      
+               issue">http://my.opera.com/securitygroup/blog/2011/09/28/the-beast-ssl-tls-issue</a>
+            ⋮┆----------------------------------------
+          1695┆ <a href="http://osvdb.org/74829">http://osvdb.org/74829</a>
+            ⋮┆----------------------------------------
+          1696┆ <a href="http://rhn.redhat.com/errata/RHSA-2012-              
+               0508.html">http://rhn.redhat.com/errata/RHSA-2012-0508.html</a>
+            ⋮┆----------------------------------------
+          1697┆ <a href="http://rhn.redhat.com/errata/RHSA-2013-              
+               1455.html">http://rhn.redhat.com/errata/RHSA-2013-1455.html</a>
+            ⋮┆----------------------------------------
+          1698┆ <a href="http://secunia.com/advisories/45791">http://secunia.com/advisories/45791</a>
+            ⋮┆----------------------------------------
+          1699┆ <a href="http://secunia.com/advisories/47998">http://secunia.com/advisories/47998</a>
+            ⋮┆----------------------------------------
+          1700┆ <a href="http://secunia.com/advisories/48256">http://secunia.com/advisories/48256</a>
+            ⋮┆----------------------------------------
+          1701┆ <a href="http://secunia.com/advisories/48692">http://secunia.com/advisories/48692</a>
+            ⋮┆----------------------------------------
+          1702┆ <a href="http://secunia.com/advisories/48915">http://secunia.com/advisories/48915</a>
+            ⋮┆----------------------------------------
+          1703┆ <a href="http://secunia.com/advisories/48948">http://secunia.com/advisories/48948</a>
+            ⋮┆----------------------------------------
+          1704┆ <a href="http://secunia.com/advisories/49198">http://secunia.com/advisories/49198</a>
+            ⋮┆----------------------------------------
+          1705┆ <a href="http://secunia.com/advisories/55322">http://secunia.com/advisories/55322</a>
+            ⋮┆----------------------------------------
+          1706┆ <a href="http://secunia.com/advisories/55350">http://secunia.com/advisories/55350</a>
+            ⋮┆----------------------------------------
+          1707┆ <a href="http://secunia.com/advisories/55351">http://secunia.com/advisories/55351</a>
+            ⋮┆----------------------------------------
+          1708┆ <a href="http://security.gentoo.org/glsa/glsa-201203-        
+               02.xml">http://security.gentoo.org/glsa/glsa-201203-02.xml</a>
+            ⋮┆----------------------------------------
+          1709┆ <a href="http://security.gentoo.org/glsa/glsa-201406-        
+               32.xml">http://security.gentoo.org/glsa/glsa-201406-32.xml</a>
+            ⋮┆----------------------------------------
+          1710┆ <a href="http://support.apple.com/kb/HT4999">http://support.apple.com/kb/HT4999</a>
+            ⋮┆----------------------------------------
+          1711┆ <a href="http://support.apple.com/kb/HT5001">http://support.apple.com/kb/HT5001</a>
+            ⋮┆----------------------------------------
+          1712┆ <a href="http://support.apple.com/kb/HT5130">http://support.apple.com/kb/HT5130</a>
+            ⋮┆----------------------------------------
+          1713┆ <a href="http://support.apple.com/kb/HT5281">http://support.apple.com/kb/HT5281</a>
+            ⋮┆----------------------------------------
+          1714┆ <a href="http://support.apple.com/kb/HT5501">http://support.apple.com/kb/HT5501</a>
+            ⋮┆----------------------------------------
+          1715┆ <a href="http://support.apple.com/kb/HT6150">http://support.apple.com/kb/HT6150</a>
+            ⋮┆----------------------------------------
+          1716┆ <a href="http://technet.microsoft.com/security/advisory/2588513">http://technet.microsoft.
+               com/security/advisory/2588513</a>                                                          
+            ⋮┆----------------------------------------
+          1717┆ <a href="http://vnhacker.blogspot.com/2011/09/beast.html">http://vnhacker.blogspot.com/201
+               1/09/beast.html</a>                                                                        
+            ⋮┆----------------------------------------
+          1718┆ <a href="http://www.apcmedia.com/salestools/SJHN-7RKGNM/SJHN-                            
+               7RKGNM_R4_EN.pdf">http://www.apcmedia.com/salestools/SJHN-7RKGNM/SJHN-7RKGNM_R4_EN.pdf</a>
+            ⋮┆----------------------------------------
+          1719┆ <a href="http://www.debian.org/security/2012/dsa-    
+               2398">http://www.debian.org/security/2012/dsa-2398</a>
+            ⋮┆----------------------------------------
+          1720┆ <a href="http://www.educatedguesswork.org/2011/09/security_impact_of_the_rizzodu.html">htt
+               p://www.educatedguesswork.org/2011/09/security_impact_of_the_rizzodu.html</a>              
+            ⋮┆----------------------------------------
+          1721┆ <a href="http://www.ibm.com/developerworks/java/jdk/alerts/">http://www.ibm.com/developerw
+               orks/java/jdk/alerts/</a>                                                                  
+            ⋮┆----------------------------------------
+          1722┆ <a href="http://www.imperialviolet.org/2011/09/23/chromeandbeast.html">http://www.imperial
+               violet.org/2011/09/23/chromeandbeast.html</a>                                              
+            ⋮┆----------------------------------------
+          1723┆ <a href="http://www.insecure.cl/Beast-SSL.rar">http://www.insecure.cl/Beast-SSL.rar</a>
+            ⋮┆----------------------------------------
+          1724┆ <a href="http://www.kb.cert.org/vuls/id/864643">http://www.kb.cert.org/vuls/id/864643</a>
+            ⋮┆----------------------------------------
+          1725┆ <a href="http://www.mandriva.com/security/advisories?name=MDVSA-            
+               2012:058">http://www.mandriva.com/security/advisories?name=MDVSA-2012:058</a>
+            ⋮┆----------------------------------------
+          1726┆ <a href="http://www.opera.com/docs/changelogs/mac/1151/">http://www.opera.com/docs/changel
+               ogs/mac/1151/</a>                                                                          
+            ⋮┆----------------------------------------
+          1727┆ <a href="http://www.opera.com/docs/changelogs/mac/1160/">http://www.opera.com/docs/changel
+               ogs/mac/1160/</a>                                                                          
+            ⋮┆----------------------------------------
+          1728┆ <a href="http://www.opera.com/docs/changelogs/unix/1151/">http://www.opera.com/docs/change
+               logs/unix/1151/</a>                                                                        
+            ⋮┆----------------------------------------
+          1729┆ <a href="http://www.opera.com/docs/changelogs/unix/1160/">http://www.opera.com/docs/change
+               logs/unix/1160/</a>                                                                        
+            ⋮┆----------------------------------------
+          1730┆ <a href="http://www.opera.com/docs/changelogs/windows/1151/">http://www.opera.com/docs/cha
+               ngelogs/windows/1151/</a>                                                                  
+            ⋮┆----------------------------------------
+          1731┆ <a href="http://www.opera.com/docs/changelogs/windows/1160/">http://www.opera.com/docs/cha
+               ngelogs/windows/1160/</a>                                                                  
+            ⋮┆----------------------------------------
+          1732┆ <a                                                                                        
+               href="http://www.opera.com/support/kb/view/1004/">http://www.opera.com/support/kb/view/1004
+               /</a>                                                                                      
+            ⋮┆----------------------------------------
+          1733┆ <a href="http://www.oracle.com/technetwork/topics/security/cpujan2015-                    
+               1972971.html">http://www.oracle.com/technetwork/topics/security/cpujan2015-1972971.html</a>
+            ⋮┆----------------------------------------
+          1734┆ <a href="http://www.oracle.com/technetwork/topics/security/cpujul2015-                    
+               2367936.html">http://www.oracle.com/technetwork/topics/security/cpujul2015-2367936.html</a>
+            ⋮┆----------------------------------------
+          1735┆ <a href="http://www.oracle.com/technetwork/topics/security/javacpuoct2011-   
+               443431.html">http://www.oracle.com/technetwork/topics/security/javacpuoct2011-
+               443431.html</a>                                                               
+            ⋮┆----------------------------------------
+          1736┆ <a href="http://www.redhat.com/support/errata/RHSA-2011-              
+               1384.html">http://www.redhat.com/support/errata/RHSA-2011-1384.html</a>
+            ⋮┆----------------------------------------
+          1737┆ <a href="http://www.redhat.com/support/errata/RHSA-2012-              
+               0006.html">http://www.redhat.com/support/errata/RHSA-2012-0006.html</a>
+            ⋮┆----------------------------------------
+          1738┆ <a                                                                                     
+               href="http://www.securityfocus.com/bid/49388">http://www.securityfocus.com/bid/49388</a>
+            ⋮┆----------------------------------------
+          1739┆ <a                                                                                     
+               href="http://www.securityfocus.com/bid/49778">http://www.securityfocus.com/bid/49778</a>
+            ⋮┆----------------------------------------
+          1740┆ <a                                                                                        
+               href="http://www.securitytracker.com/id/1029190">http://www.securitytracker.com/id/1029190<
+               /a>                                                                                        
+            ⋮┆----------------------------------------
+          1741┆ <a                                                                                        
+               href="http://www.securitytracker.com/id?1025997">http://www.securitytracker.com/id?1025997<
+               /a>                                                                                        
+            ⋮┆----------------------------------------
+          1742┆ <a                                                                                        
+               href="http://www.securitytracker.com/id?1026103">http://www.securitytracker.com/id?1026103<
+               /a>                                                                                        
+            ⋮┆----------------------------------------
+          1743┆ <a                                                                                        
+               href="http://www.securitytracker.com/id?1026704">http://www.securitytracker.com/id?1026704<
+               /a>                                                                                        
+            ⋮┆----------------------------------------
+          1744┆ <a href="http://www.ubuntu.com/usn/USN-1263-1">http://www.ubuntu.com/usn/USN-1263-1</a>
+            ⋮┆----------------------------------------
+          1745┆ <a href="http://www.us-cert.gov/cas/techalerts/TA12-010A.html">http://www.us-
+               cert.gov/cas/techalerts/TA12-010A.html</a>                                    
+            ⋮┆----------------------------------------
+          2471┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/5">http://www.openwall.com/lists/oss-security/2024/03/27/5</a>
+            ⋮┆----------------------------------------
+          2472┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/6">http://www.openwall.com/lists/oss-security/2024/03/27/6</a>
+            ⋮┆----------------------------------------
+          2473┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/7">http://www.openwall.com/lists/oss-security/2024/03/27/7</a>
+            ⋮┆----------------------------------------
+          2474┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/8">http://www.openwall.com/lists/oss-security/2024/03/27/8</a>
+            ⋮┆----------------------------------------
+          2475┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/9">http://www.openwall.com/lists/oss-security/2024/03/27/9</a>
+            ⋮┆----------------------------------------
+          2476┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/1">http://www.openwall.com/lists/oss-security/2024/03/28/1</a>
+            ⋮┆----------------------------------------
+          2477┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/2">http://www.openwall.com/lists/oss-security/2024/03/28/2</a>
+            ⋮┆----------------------------------------
+          2478┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/3">http://www.openwall.com/lists/oss-security/2024/03/28/3</a>
+            ⋮┆----------------------------------------
+          2541┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/01/18/3">http://www.openwall.com/lists/oss-security/2024/01/18/3</a>
+            ⋮┆----------------------------------------
+          2592┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/01/18/3">http://www.openwall.com/lists/oss-security/2024/01/18/3</a>
+            ⋮┆----------------------------------------
+          2643┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/01/18/3">http://www.openwall.com/lists/oss-security/2024/01/18/3</a>
+            ⋮┆----------------------------------------
+          2694┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/01/18/3">http://www.openwall.com/lists/oss-security/2024/01/18/3</a>
+            ⋮┆----------------------------------------
+          2798┆ <a href="http://openwall.com/lists/oss-                                      
+               security/2017/07/11/3">http://openwall.com/lists/oss-security/2017/07/11/3</a>
+            ⋮┆----------------------------------------
+          2799┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/04/11/1">http://www.openwall.com/lists/oss-security/2023/04/11/1</a>
+            ⋮┆----------------------------------------
+          2800┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/04/12/1">http://www.openwall.com/lists/oss-security/2023/04/12/1</a>
+            ⋮┆----------------------------------------
+          2801┆ <a                                                                                     
+               href="http://www.securityfocus.com/bid/99575">http://www.securityfocus.com/bid/99575</a>
+            ⋮┆----------------------------------------
+          2815┆ <a href="http://packetstormsecurity.com/files/150897/PCRE-8.41-Buffer-     
+               Overflow.html">http://packetstormsecurity.com/files/150897/PCRE-8.41-Buffer-
+               Overflow.html</a>                                                           
+            ⋮┆----------------------------------------
+          2816┆ <a href="http://seclists.org/fulldisclosure/2018/Dec/33">http://seclists.org/fulldisclosur
+               e/2018/Dec/33</a>                                                                          
+            ⋮┆----------------------------------------
+          2817┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2017/11/01/11">http://www.openwall.com/lists/oss-security/2017/11/01/11</a>
+            ⋮┆----------------------------------------
+          2818┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2017/11/01/3">http://www.openwall.com/lists/oss-security/2017/11/01/3</a>
+            ⋮┆----------------------------------------
+          2819┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2017/11/01/7">http://www.openwall.com/lists/oss-security/2017/11/01/7</a>
+            ⋮┆----------------------------------------
+          2820┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2017/11/01/8">http://www.openwall.com/lists/oss-security/2017/11/01/8</a>
+            ⋮┆----------------------------------------
+          2821┆ <a                                                                                       
+               href="http://www.securityfocus.com/bid/101688">http://www.securityfocus.com/bid/101688</a>
+            ⋮┆----------------------------------------
+          2835┆ <a                                                                                     
+               href="http://www.securityfocus.com/bid/97067">http://www.securityfocus.com/bid/97067</a>
+            ⋮┆----------------------------------------
+          2851┆ <a                                                                                     
+               href="http://www.securityfocus.com/bid/97067">http://www.securityfocus.com/bid/97067</a>
+            ⋮┆----------------------------------------
+          2867┆ <a href="http://seclists.org/fulldisclosure/2020/Dec/32">http://seclists.org/fulldisclosur
+               e/2020/Dec/32</a>                                                                          
+            ⋮┆----------------------------------------
+          2868┆ <a href="http://seclists.org/fulldisclosure/2021/Feb/14">http://seclists.org/fulldisclosur
+               e/2021/Feb/14</a>                                                                          
+            ⋮┆----------------------------------------
+          3012┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/5">http://www.openwall.com/lists/oss-security/2024/03/27/5</a>
+            ⋮┆----------------------------------------
+          3013┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/6">http://www.openwall.com/lists/oss-security/2024/03/27/6</a>
+            ⋮┆----------------------------------------
+          3014┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/7">http://www.openwall.com/lists/oss-security/2024/03/27/7</a>
+            ⋮┆----------------------------------------
+          3015┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/8">http://www.openwall.com/lists/oss-security/2024/03/27/8</a>
+            ⋮┆----------------------------------------
+          3016┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/9">http://www.openwall.com/lists/oss-security/2024/03/27/9</a>
+            ⋮┆----------------------------------------
+          3017┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/1">http://www.openwall.com/lists/oss-security/2024/03/28/1</a>
+            ⋮┆----------------------------------------
+          3018┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/2">http://www.openwall.com/lists/oss-security/2024/03/28/2</a>
+            ⋮┆----------------------------------------
+          3019┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/3">http://www.openwall.com/lists/oss-security/2024/03/28/3</a>
+            ⋮┆----------------------------------------
+          3443┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/09/28/4">http://www.openwall.com/lists/oss-security/2023/09/28/4</a>
+            ⋮┆----------------------------------------
+          3475┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/30/1">http://www.openwall.com/lists/oss-security/2023/05/30/1</a>
+            ⋮┆----------------------------------------
+          3508┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/07/19/4">http://www.openwall.com/lists/oss-security/2023/07/19/4</a>
+            ⋮┆----------------------------------------
+          3509┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/07/19/5">http://www.openwall.com/lists/oss-security/2023/07/19/5</a>
+            ⋮┆----------------------------------------
+          3510┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/07/19/6">http://www.openwall.com/lists/oss-security/2023/07/19/6</a>
+            ⋮┆----------------------------------------
+          3561┆ <a href="http://seclists.org/fulldisclosure/2023/Jul/43">http://seclists.org/fulldisclosur
+               e/2023/Jul/43</a>                                                                          
+            ⋮┆----------------------------------------
+          3562┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/07/31/1">http://www.openwall.com/lists/oss-security/2023/07/31/1</a>
+            ⋮┆----------------------------------------
+          3626┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/11/1">http://www.openwall.com/lists/oss-security/2024/03/11/1</a>
+            ⋮┆----------------------------------------
+          3689┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/06/27/1">http://www.openwall.com/lists/oss-security/2024/06/27/1</a>
+            ⋮┆----------------------------------------
+          3690┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/06/28/4">http://www.openwall.com/lists/oss-security/2024/06/28/4</a>
+            ⋮┆----------------------------------------
+          3791┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/02/16/2">http://www.openwall.com/lists/oss-security/2024/02/16/2</a>
+            ⋮┆----------------------------------------
+          3792┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/02/16/3">http://www.openwall.com/lists/oss-security/2024/02/16/3</a>
+            ⋮┆----------------------------------------
+          3864┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/02/16/2">http://www.openwall.com/lists/oss-security/2024/02/16/2</a>
+            ⋮┆----------------------------------------
+          3865┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/02/16/3">http://www.openwall.com/lists/oss-security/2024/02/16/3</a>
+            ⋮┆----------------------------------------
+          4010┆ <a href="http://bugs.debian.org/cgi-                                                    
+               bin/bugreport.cgi?bug=725357">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=725357</a>
+            ⋮┆----------------------------------------
+          4011┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2013/10/01/9">http://www.openwall.com/lists/oss-security/2013/10/01/9</a>
+            ⋮┆----------------------------------------
+          4025┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2021/08/04/2">http://www.openwall.com/lists/oss-security/2021/08/04/2</a>
+            ⋮┆----------------------------------------
+          4026┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2021/08/17/3">http://www.openwall.com/lists/oss-security/2021/08/17/3</a>
+            ⋮┆----------------------------------------
+          4027┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2021/09/07/3">http://www.openwall.com/lists/oss-security/2021/09/07/3</a>
+            ⋮┆----------------------------------------
+          4116┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/28">http://seclists.org/fulldisclosur
+               e/2022/Oct/28</a>                                                                          
+            ⋮┆----------------------------------------
+          4117┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/41">http://seclists.org/fulldisclosur
+               e/2022/Oct/41</a>                                                                          
+            ⋮┆----------------------------------------
+          4137┆ <a href="http://ncurses.scripts.mit.edu/?p=ncurses.git%3Ba=commit%3Bh=eb51b1ea1f75a0ec17c9
+               c5937cb28df1e8eeec56">http://ncurses.scripts.mit.edu/?p=ncurses.git%3Ba=commit%3Bh=eb51b1ea
+               1f75a0ec17c9c5937cb28df1e8eeec56</a>                                                       
+            ⋮┆----------------------------------------
+          4138┆ <a href="http://ncurses.scripts.mit.edu/?p=ncurses.git;a=commit;h=eb51b1ea1f75a0ec17c9c593
+               7cb28df1e8eeec56">http://ncurses.scripts.mit.edu/?p=ncurses.git;a=commit;h=eb51b1ea1f75a0ec
+               17c9c5937cb28df1e8eeec56</a>                                                               
+            ⋮┆----------------------------------------
+          4139┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2023/04/19/10">http://www.openwall.com/lists/oss-security/2023/04/19/10</a>
+            ⋮┆----------------------------------------
+          4140┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2023/04/19/11">http://www.openwall.com/lists/oss-security/2023/04/19/11</a>
+            ⋮┆----------------------------------------
+          4185┆ <a href="http://git.linux-nfs.org/?p=steved/libtirpc.git%3Ba=commit%3Bh=86529758570cef4c73
+               fb9b9c4104fdc510f701ed">http://git.linux-                                                  
+               nfs.org/?p=steved/libtirpc.git%3Ba=commit%3Bh=86529758570cef4c73fb9b9c4104fdc510f701ed</a> 
+            ⋮┆----------------------------------------
+          4212┆ <a href="http://git.linux-nfs.org/?p=steved/libtirpc.git%3Ba=commit%3Bh=86529758570cef4c73
+               fb9b9c4104fdc510f701ed">http://git.linux-                                                  
+               nfs.org/?p=steved/libtirpc.git%3Ba=commit%3Bh=86529758570cef4c73fb9b9c4104fdc510f701ed</a> 
+            ⋮┆----------------------------------------
+          4239┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/02/16/2">http://www.openwall.com/lists/oss-security/2024/02/16/2</a>
+            ⋮┆----------------------------------------
+          4240┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/02/16/3">http://www.openwall.com/lists/oss-security/2024/02/16/3</a>
+            ⋮┆----------------------------------------
+          4312┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/02/16/2">http://www.openwall.com/lists/oss-security/2024/02/16/2</a>
+            ⋮┆----------------------------------------
+          4313┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/02/16/3">http://www.openwall.com/lists/oss-security/2024/02/16/3</a>
+            ⋮┆----------------------------------------
+          4458┆ <a href="http://bugs.debian.org/cgi-                                                    
+               bin/bugreport.cgi?bug=725357">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=725357</a>
+            ⋮┆----------------------------------------
+          4459┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2013/10/01/9">http://www.openwall.com/lists/oss-security/2013/10/01/9</a>
+            ⋮┆----------------------------------------
+          4473┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2021/08/04/2">http://www.openwall.com/lists/oss-security/2021/08/04/2</a>
+            ⋮┆----------------------------------------
+          4474┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2021/08/17/3">http://www.openwall.com/lists/oss-security/2021/08/17/3</a>
+            ⋮┆----------------------------------------
+          4475┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2021/09/07/3">http://www.openwall.com/lists/oss-security/2021/09/07/3</a>
+            ⋮┆----------------------------------------
+          4534┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/5">http://www.openwall.com/lists/oss-security/2024/03/27/5</a>
+            ⋮┆----------------------------------------
+          4535┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/6">http://www.openwall.com/lists/oss-security/2024/03/27/6</a>
+            ⋮┆----------------------------------------
+          4536┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/7">http://www.openwall.com/lists/oss-security/2024/03/27/7</a>
+            ⋮┆----------------------------------------
+          4537┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/8">http://www.openwall.com/lists/oss-security/2024/03/27/8</a>
+            ⋮┆----------------------------------------
+          4538┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/9">http://www.openwall.com/lists/oss-security/2024/03/27/9</a>
+            ⋮┆----------------------------------------
+          4539┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/1">http://www.openwall.com/lists/oss-security/2024/03/28/1</a>
+            ⋮┆----------------------------------------
+          4540┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/2">http://www.openwall.com/lists/oss-security/2024/03/28/2</a>
+            ⋮┆----------------------------------------
+          4541┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/3">http://www.openwall.com/lists/oss-security/2024/03/28/3</a>
+            ⋮┆----------------------------------------
+          4706┆ <a href="http://secunia.com/advisories/27215">http://secunia.com/advisories/27215</a>
+            ⋮┆----------------------------------------
+          4707┆ <a href="http://www.securityfocus.com/archive/1/482129/100/100/threaded">http://www.securi
+               tyfocus.com/archive/1/482129/100/100/threaded</a>                                          
+            ⋮┆----------------------------------------
+          4708┆ <a href="http://www.securityfocus.com/archive/1/482857/100/0/threaded">http://www.security
+               focus.com/archive/1/482857/100/0/threaded</a>                                              
+            ⋮┆----------------------------------------
+          4709┆ <a                                                                                     
+               href="http://www.securityfocus.com/bid/26048">http://www.securityfocus.com/bid/26048</a>
+            ⋮┆----------------------------------------
+          4710┆ <a href="http://www.vupen.com/english/advisories/2007/3474">http://www.vupen.com/english/a
+               dvisories/2007/3474</a>                                                                    
+            ⋮┆----------------------------------------
+          4807┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/5">http://www.openwall.com/lists/oss-security/2024/03/27/5</a>
+            ⋮┆----------------------------------------
+          4808┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/6">http://www.openwall.com/lists/oss-security/2024/03/27/6</a>
+            ⋮┆----------------------------------------
+          4809┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/7">http://www.openwall.com/lists/oss-security/2024/03/27/7</a>
+            ⋮┆----------------------------------------
+          4810┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/8">http://www.openwall.com/lists/oss-security/2024/03/27/8</a>
+            ⋮┆----------------------------------------
+          4811┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/9">http://www.openwall.com/lists/oss-security/2024/03/27/9</a>
+            ⋮┆----------------------------------------
+          4812┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/1">http://www.openwall.com/lists/oss-security/2024/03/28/1</a>
+            ⋮┆----------------------------------------
+          4813┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/2">http://www.openwall.com/lists/oss-security/2024/03/28/2</a>
+            ⋮┆----------------------------------------
+          4814┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/3">http://www.openwall.com/lists/oss-security/2024/03/28/3</a>
+            ⋮┆----------------------------------------
+          4853┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/28">http://seclists.org/fulldisclosur
+               e/2022/Oct/28</a>                                                                          
+            ⋮┆----------------------------------------
+          4854┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/41">http://seclists.org/fulldisclosur
+               e/2022/Oct/41</a>                                                                          
+            ⋮┆----------------------------------------
+          4874┆ <a href="http://ncurses.scripts.mit.edu/?p=ncurses.git%3Ba=commit%3Bh=eb51b1ea1f75a0ec17c9
+               c5937cb28df1e8eeec56">http://ncurses.scripts.mit.edu/?p=ncurses.git%3Ba=commit%3Bh=eb51b1ea
+               1f75a0ec17c9c5937cb28df1e8eeec56</a>                                                       
+            ⋮┆----------------------------------------
+          4875┆ <a href="http://ncurses.scripts.mit.edu/?p=ncurses.git;a=commit;h=eb51b1ea1f75a0ec17c9c593
+               7cb28df1e8eeec56">http://ncurses.scripts.mit.edu/?p=ncurses.git;a=commit;h=eb51b1ea1f75a0ec
+               17c9c5937cb28df1e8eeec56</a>                                                               
+            ⋮┆----------------------------------------
+          4876┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2023/04/19/10">http://www.openwall.com/lists/oss-security/2023/04/19/10</a>
+            ⋮┆----------------------------------------
+          4877┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2023/04/19/11">http://www.openwall.com/lists/oss-security/2023/04/19/11</a>
+            ⋮┆----------------------------------------
+          4922┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/28">http://seclists.org/fulldisclosur
+               e/2022/Oct/28</a>                                                                          
+            ⋮┆----------------------------------------
+          4923┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/41">http://seclists.org/fulldisclosur
+               e/2022/Oct/41</a>                                                                          
+            ⋮┆----------------------------------------
+          4943┆ <a href="http://ncurses.scripts.mit.edu/?p=ncurses.git%3Ba=commit%3Bh=eb51b1ea1f75a0ec17c9
+               c5937cb28df1e8eeec56">http://ncurses.scripts.mit.edu/?p=ncurses.git%3Ba=commit%3Bh=eb51b1ea
+               1f75a0ec17c9c5937cb28df1e8eeec56</a>                                                       
+            ⋮┆----------------------------------------
+          4944┆ <a href="http://ncurses.scripts.mit.edu/?p=ncurses.git;a=commit;h=eb51b1ea1f75a0ec17c9c593
+               7cb28df1e8eeec56">http://ncurses.scripts.mit.edu/?p=ncurses.git;a=commit;h=eb51b1ea1f75a0ec
+               17c9c5937cb28df1e8eeec56</a>                                                               
+            ⋮┆----------------------------------------
+          4945┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2023/04/19/10">http://www.openwall.com/lists/oss-security/2023/04/19/10</a>
+            ⋮┆----------------------------------------
+          4946┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2023/04/19/11">http://www.openwall.com/lists/oss-security/2023/04/19/11</a>
+            ⋮┆----------------------------------------
+          5352┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/09/28/4">http://www.openwall.com/lists/oss-security/2023/09/28/4</a>
+            ⋮┆----------------------------------------
+          5384┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/30/1">http://www.openwall.com/lists/oss-security/2023/05/30/1</a>
+            ⋮┆----------------------------------------
+          5417┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/07/19/4">http://www.openwall.com/lists/oss-security/2023/07/19/4</a>
+            ⋮┆----------------------------------------
+          5418┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/07/19/5">http://www.openwall.com/lists/oss-security/2023/07/19/5</a>
+            ⋮┆----------------------------------------
+          5419┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/07/19/6">http://www.openwall.com/lists/oss-security/2023/07/19/6</a>
+            ⋮┆----------------------------------------
+          5470┆ <a href="http://seclists.org/fulldisclosure/2023/Jul/43">http://seclists.org/fulldisclosur
+               e/2023/Jul/43</a>                                                                          
+            ⋮┆----------------------------------------
+          5471┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/07/31/1">http://www.openwall.com/lists/oss-security/2023/07/31/1</a>
+            ⋮┆----------------------------------------
+          5535┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/11/1">http://www.openwall.com/lists/oss-security/2024/03/11/1</a>
+            ⋮┆----------------------------------------
+          5598┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/06/27/1">http://www.openwall.com/lists/oss-security/2024/06/27/1</a>
+            ⋮┆----------------------------------------
+          5599┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/06/28/4">http://www.openwall.com/lists/oss-security/2024/06/28/4</a>
+            ⋮┆----------------------------------------
+          5702┆ <a href="http://secunia.com/advisories/27215">http://secunia.com/advisories/27215</a>
+            ⋮┆----------------------------------------
+          5703┆ <a href="http://www.securityfocus.com/archive/1/482129/100/100/threaded">http://www.securi
+               tyfocus.com/archive/1/482129/100/100/threaded</a>                                          
+            ⋮┆----------------------------------------
+          5704┆ <a href="http://www.securityfocus.com/archive/1/482857/100/0/threaded">http://www.security
+               focus.com/archive/1/482857/100/0/threaded</a>                                              
+            ⋮┆----------------------------------------
+          5705┆ <a                                                                                     
+               href="http://www.securityfocus.com/bid/26048">http://www.securityfocus.com/bid/26048</a>
+            ⋮┆----------------------------------------
+          5706┆ <a href="http://www.vupen.com/english/advisories/2007/3474">http://www.vupen.com/english/a
+               dvisories/2007/3474</a>                                                                    
+            ⋮┆----------------------------------------
+          5779┆ <a href="http://blogs.perl.org/users/neilb/2021/11/addressing-cpan-vulnerabilities- 
+               related-to-checksums.html">http://blogs.perl.org/users/neilb/2021/11/addressing-cpan-
+               vulnerabilities-related-to-checksums.html</a>                                        
+            ⋮┆----------------------------------------
+          5798┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/04/29/1">http://www.openwall.com/lists/oss-security/2023/04/29/1</a>
+            ⋮┆----------------------------------------
+          5799┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/03/3">http://www.openwall.com/lists/oss-security/2023/05/03/3</a>
+            ⋮┆----------------------------------------
+          5800┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/03/5">http://www.openwall.com/lists/oss-security/2023/05/03/5</a>
+            ⋮┆----------------------------------------
+          5801┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/07/2">http://www.openwall.com/lists/oss-security/2023/05/07/2</a>
+            ⋮┆----------------------------------------
+          5853┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2011/11/04/2">http://www.openwall.com/lists/oss-security/2011/11/04/2</a>
+            ⋮┆----------------------------------------
+          5854┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2011/11/04/4">http://www.openwall.com/lists/oss-security/2011/11/04/4</a>
+            ⋮┆----------------------------------------
+          5870┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/04/29/1">http://www.openwall.com/lists/oss-security/2023/04/29/1</a>
+            ⋮┆----------------------------------------
+          5871┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/03/3">http://www.openwall.com/lists/oss-security/2023/05/03/3</a>
+            ⋮┆----------------------------------------
+          5872┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/03/5">http://www.openwall.com/lists/oss-security/2023/05/03/5</a>
+            ⋮┆----------------------------------------
+          5873┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/07/2">http://www.openwall.com/lists/oss-security/2023/05/07/2</a>
+            ⋮┆----------------------------------------
+          5907┆ <a href="http://marc.info/?l=bugtraq&amp;m=112327628230258&amp;w=2">http://marc.info/?l=bu
+               gtraq&amp;m=112327628230258&amp;w=2</a>                                                    
+            ⋮┆----------------------------------------
+          5981┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/5">http://www.openwall.com/lists/oss-security/2024/03/27/5</a>
+            ⋮┆----------------------------------------
+          5982┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/6">http://www.openwall.com/lists/oss-security/2024/03/27/6</a>
+            ⋮┆----------------------------------------
+          5983┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/7">http://www.openwall.com/lists/oss-security/2024/03/27/7</a>
+            ⋮┆----------------------------------------
+          5984┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/8">http://www.openwall.com/lists/oss-security/2024/03/27/8</a>
+            ⋮┆----------------------------------------
+          5985┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/27/9">http://www.openwall.com/lists/oss-security/2024/03/27/9</a>
+            ⋮┆----------------------------------------
+          5986┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/1">http://www.openwall.com/lists/oss-security/2024/03/28/1</a>
+            ⋮┆----------------------------------------
+          5987┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/2">http://www.openwall.com/lists/oss-security/2024/03/28/2</a>
+            ⋮┆----------------------------------------
+          5988┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/28/3">http://www.openwall.com/lists/oss-security/2024/03/28/3</a>
+            ⋮┆----------------------------------------
+          6027┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/37">http://seclists.org/fulldisclosur
+               e/2022/Oct/37</a>                                                                          
+            ⋮┆----------------------------------------
+          6028┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/38">http://seclists.org/fulldisclosur
+               e/2022/Oct/38</a>                                                                          
+            ⋮┆----------------------------------------
+          6029┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/41">http://seclists.org/fulldisclosur
+               e/2022/Oct/41</a>                                                                          
+            ⋮┆----------------------------------------
+          6030┆ <a href="http://seclists.org/fulldisclosure/2022/Oct/42">http://seclists.org/fulldisclosur
+               e/2022/Oct/42</a>                                                                          
+            ⋮┆----------------------------------------
+          6031┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2022/08/05/2">http://www.openwall.com/lists/oss-security/2022/08/05/2</a>
+            ⋮┆----------------------------------------
+          6032┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2022/08/09/1">http://www.openwall.com/lists/oss-security/2022/08/09/1</a>
+            ⋮┆----------------------------------------
+          6081┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/10/20/9">http://www.openwall.com/lists/oss-security/2023/10/20/9</a>
+            ⋮┆----------------------------------------
+          6082┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2024/01/24/10">http://www.openwall.com/lists/oss-security/2024/01/24/10</a>
+            ⋮┆----------------------------------------
+          6163┆ <a href="http://logback.qos.ch/news.html">http://logback.qos.ch/news.html</a>
+            ⋮┆----------------------------------------
+          6164┆ <a href="http://packetstormsecurity.com/files/167794/Open-Xchange-App-Suite-7.10.x-Cross-
+               Site-Scripting-Command-Injection.html">http://packetstormsecurity.com/files/167794/Open-  
+               Xchange-App-Suite-7.10.x-Cross-Site-Scripting-Command-Injection.html</a>                  
+            ⋮┆----------------------------------------
+          6165┆ <a href="http://seclists.org/fulldisclosure/2022/Jul/11">http://seclists.org/fulldisclosur
+               e/2022/Jul/11</a>                                                                          
+            ⋮┆----------------------------------------
+          6355┆ <a href="http://packetstormsecurity.com/files/165676/H2-Database-Console-Remote-Code- 
+               Execution.html">http://packetstormsecurity.com/files/165676/H2-Database-Console-Remote-
+               Code-Execution.html</a>                                                                
+            ⋮┆----------------------------------------
+          6356┆ <a href="http://seclists.org/fulldisclosure/2022/Jan/39">http://seclists.org/fulldisclosur
+               e/2022/Jan/39</a>                                                                          
+            ⋮┆----------------------------------------
+          6465┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/05/22/1">http://www.openwall.com/lists/oss-security/2023/05/22/1</a>
+            ⋮┆----------------------------------------
+          6502┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/11/28/2">http://www.openwall.com/lists/oss-security/2023/11/28/2</a>
+            ⋮┆----------------------------------------
+          6572┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/12/17/4">http://www.openwall.com/lists/oss-security/2024/12/17/4</a>
+            ⋮┆----------------------------------------
+          6573┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/12/18/2">http://www.openwall.com/lists/oss-security/2024/12/18/2</a>
+            ⋮┆----------------------------------------
+          6653┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/10/10/9">http://www.openwall.com/lists/oss-security/2023/10/10/9</a>
+            ⋮┆----------------------------------------
+          6687┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/10/13/4">http://www.openwall.com/lists/oss-security/2023/10/13/4</a>
+            ⋮┆----------------------------------------
+          6688┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/10/13/9">http://www.openwall.com/lists/oss-security/2023/10/13/9</a>
+            ⋮┆----------------------------------------
+          6689┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/10/18/4">http://www.openwall.com/lists/oss-security/2023/10/18/4</a>
+            ⋮┆----------------------------------------
+          6690┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/10/18/8">http://www.openwall.com/lists/oss-security/2023/10/18/8</a>
+            ⋮┆----------------------------------------
+          6691┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/10/19/6">http://www.openwall.com/lists/oss-security/2023/10/19/6</a>
+            ⋮┆----------------------------------------
+          6692┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/10/20/8">http://www.openwall.com/lists/oss-security/2023/10/20/8</a>
+            ⋮┆----------------------------------------
+          6936┆ <a href="http://www.openwall.com/lists/oss-                                        
+               security/2023/10/10/10">http://www.openwall.com/lists/oss-security/2023/10/10/10</a>
+            ⋮┆----------------------------------------
+          6970┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/13/3">http://www.openwall.com/lists/oss-security/2024/03/13/3</a>
+            ⋮┆----------------------------------------
+          7007┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2024/03/13/4">http://www.openwall.com/lists/oss-security/2024/03/13/4</a>
+            ⋮┆----------------------------------------
+          7068┆ <a href="http://packetstormsecurity.com/files/166713/Spring4Shell-Code-      
+               Execution.html">http://packetstormsecurity.com/files/166713/Spring4Shell-Code-
+               Execution.html</a>                                                            
+            ⋮┆----------------------------------------
+          7069┆ <a href="http://packetstormsecurity.com/files/167011/Spring4Shell-Spring-Framework-Class-
+               Property-Remote-Code-                                                                     
+               Execution.html">http://packetstormsecurity.com/files/167011/Spring4Shell-Spring-Framework-
+               Class-Property-Remote-Code-Execution.html</a>                                             
+            ⋮┆----------------------------------------
+          7344┆ <a href="http://github.com/spring-projects/spring-framework">http://github.com/spring-
+               projects/spring-framework</a>                                                          
+            ⋮┆----------------------------------------
+          7362┆ <a href="http://packetstormsecurity.com/files/166713/Spring4Shell-Code-      
+               Execution.html">http://packetstormsecurity.com/files/166713/Spring4Shell-Code-
+               Execution.html</a>                                                            
+            ⋮┆----------------------------------------
+          7363┆ <a href="http://packetstormsecurity.com/files/167011/Spring4Shell-Spring-Framework-Class-
+               Property-Remote-Code-                                                                     
+               Execution.html">http://packetstormsecurity.com/files/167011/Spring4Shell-Spring-Framework-
+               Class-Property-Remote-Code-Execution.html</a>                                             
+            ⋮┆----------------------------------------
+          7461┆ <a href="http://packetstormsecurity.com/files/175095/PyTorch-Model-Server-Registration-
+               Deserialization-Remote-Code-                                                            
+               Execution.html">http://packetstormsecurity.com/files/175095/PyTorch-Model-Server-       
+               Registration-Deserialization-Remote-Code-Execution.html</a>                             
+            ⋮┆----------------------------------------
+          7462┆ <a href="http://www.openwall.com/lists/oss-                                      
+               security/2023/11/19/1">http://www.openwall.com/lists/oss-security/2023/11/19/1</a>
