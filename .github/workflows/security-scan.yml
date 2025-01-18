@@ -1,0 +1,35 @@
+name: Security Scan
+
+on:
+  push:
+    branches: ["tbo-task4-dark90lab"]
+  pull_request:
+    branches: ["tbo-task4-dark90lab"]
+
+jobs:
+  security-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t myapp:latest .
+
+      - name: Run Trivy scan
+        uses: aquasecurity/trivy-action@0.10.0
+        with:
+          image-ref: "myapp:latest"
+          vuln-type: "os,library"
+          format: "table"
+
+      - name: Install Semgrep
+        run: |
+          python3 -m venv /home/runner/venv
+          /home/runner/venv/bin/python3 -m pip install semgrep
+
+      - name: Run Semgrep SAST
+        run: |
+          /home/runner/venv/bin/semgrep --config p/security-audit --error --json .
