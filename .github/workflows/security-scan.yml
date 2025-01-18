@@ -2,9 +2,9 @@ name: Security Scan
 
 on:
   push:
-    branches: ["main"]
+    branches: ["tbo-task4-dark90lab"]
   pull_request:
-    branches: ["main"]
+    branches: ["tbo-task4-dark90lab"]
 
 jobs:
   security-tests:
@@ -19,7 +19,7 @@ jobs:
           docker build -t myapp:latest .
 
       - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@v0.10.0
+        uses: aquasecurity/trivy-action@0.10.0
         with:
           image-ref: "myapp:latest"
           vuln-type: "os,library"
